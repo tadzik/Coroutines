@@ -20,8 +20,7 @@ sub yield is export {
 sub schedule is export {
     return unless +@coroutines;
     my $r = @coroutines.shift;
-    my $result = $r.shift;
-    if $result ~~ CoroStatus::still_going {
+    if $r.shift ~~ CoroStatus::still_going {
         @coroutines.push($r);
     }
 }
